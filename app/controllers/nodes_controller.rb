@@ -1,6 +1,11 @@
 class NodesController < ApplicationController
   before_action :set_node, only: [:show, :edit, :update, :destroy]
 
+  def import
+    Node.import(params[:file])
+    redirect_to nodes_path, notice: "Import success!"
+  end
+
   # GET /nodes
   # GET /nodes.json
   def index

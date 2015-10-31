@@ -1,8 +1,9 @@
 Rails.application.routes.draw do
-  resources :nodes
-  resources :links
   root to: "links#index"
   resources :links do
+    collection { post :import }
+  end
+  resources :nodes do
     collection { post :import }
   end
 
