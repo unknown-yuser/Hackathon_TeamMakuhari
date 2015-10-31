@@ -1,4 +1,6 @@
 class Link < ActiveRecord::Base
+  has_many :node
+
   def self.import(file)
     CSV.foreach(file.path, headers: true) do |row|
       link = find_by(id: row["id"]) || new
