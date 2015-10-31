@@ -1,0 +1,53 @@
+<%- model_class = Link -%>
+<div class="page-header">
+  <h1><%=t '.title', :default => model_class.model_name.human.titleize %></h1>
+</div>
+
+<dl class="dl-horizontal">
+  <dt><strong><%= model_class.human_attribute_name(:id) %>:</strong></dt>
+  <dd><%= @link.id %></dd>
+  <dt><strong><%= model_class.human_attribute_name(:link_id) %>:</strong></dt>
+  <dd><%= @link.link_id %></dd>
+  <dt><strong><%= model_class.human_attribute_name(:src_node_id) %>:</strong></dt>
+  <dd><%= @link.src_node_id %></dd>
+  <dt><strong><%= model_class.human_attribute_name(:dst_node_id) %>:</strong></dt>
+  <dd><%= @link.dst_node_id %></dd>
+  <dt><strong><%= model_class.human_attribute_name(:link_type) %>:</strong></dt>
+  <dd><%= @link.link_type %></dd>
+  <dt><strong><%= model_class.human_attribute_name(:width) %>:</strong></dt>
+  <dd><%= @link.width %></dd>
+  <dt><strong><%= model_class.human_attribute_name(:hill) %>:</strong></dt>
+  <dd><%= @link.hill %></dd>
+  <dt><strong><%= model_class.human_attribute_name(:gap) %>:</strong></dt>
+  <dd><%= @link.gap %></dd>
+  <dt><strong><%= model_class.human_attribute_name(:gap_latitude) %>:</strong></dt>
+  <dd><%= @link.gap_latitude %></dd>
+  <dt><strong><%= model_class.human_attribute_name(:gap_longitude) %>:</strong></dt>
+  <dd><%= @link.gap_longitude %></dd>
+  <dt><strong><%= model_class.human_attribute_name(:steps) %>:</strong></dt>
+  <dd><%= @link.steps %></dd>
+  <dt><strong><%= model_class.human_attribute_name(:bus_stop) %>:</strong></dt>
+  <dd><%= @link.bus_stop %></dd>
+  <dt><strong><%= model_class.human_attribute_name(:bus_stop_latitude) %>:</strong></dt>
+  <dd><%= @link.bus_stop_latitude %></dd>
+  <dt><strong><%= model_class.human_attribute_name(:bus_stop_longitude) %>:</strong></dt>
+  <dd><%= @link.bus_stop_longitude %></dd>
+  <dt><strong><%= model_class.human_attribute_name(:blind_guide) %>:</strong></dt>
+  <dd><%= @link.blind_guide %></dd>
+  <dt><strong><%= model_class.human_attribute_name(:signals) %>:</strong></dt>
+  <dd><%= @link.signals %></dd>
+  <dt><strong><%= model_class.human_attribute_name(:street_name) %>:</strong></dt>
+  <dd><%= @link.street_name %></dd>
+  <dt><strong><%= model_class.human_attribute_name(:length) %>:</strong></dt>
+  <dd><%= @link.length %></dd>
+</dl>
+
+<%= link_to t('.back', :default => t("helpers.links.back")),
+              links_path, :class => 'btn btn-default'  %>
+<%= link_to t('.edit', :default => t("helpers.links.edit")),
+              edit_link_path(@link), :class => 'btn btn-default' %>
+<%= link_to t('.destroy', :default => t("helpers.links.destroy")),
+              link_path(@link),
+              :method => 'delete',
+              :data => { :confirm => t('.confirm', :default => t("helpers.links.confirm", :default => 'Are you sure?')) },
+              :class => 'btn btn-danger' %>

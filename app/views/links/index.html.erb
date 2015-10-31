@@ -1,0 +1,79 @@
+<%- model_class = Link -%>
+<div class="page-header">
+  <h1><%=t '.title', :default => model_class.model_name.human.pluralize.titleize %></h1>
+</div>
+<div class="row">
+  <div class="col-md-12">
+    <div class="pull-right">
+      <%= link_to t('.new', :default => t("helpers.links.new")),
+                  new_link_path,
+                  :class => 'btn btn-primary' %>
+    </div>
+    <%= form_tag import_links_path, multipart: true do %>
+      <%= file_field_tag :file %>
+      <%= submit_tag "Import", class: "btn btn-info" %>
+    <% end %>
+  </div>
+</div>
+<div class="col-md-12">
+  <table class="table table-striped">
+    <thead>
+      <tr>
+        <th><%=t '.actions', :default => t("helpers.actions") %></th>
+        <th><%= model_class.human_attribute_name(:id) %></th>
+        <th><%= model_class.human_attribute_name(:link_id) %></th>
+        <th><%= model_class.human_attribute_name(:src_node_id) %></th>
+        <th><%= model_class.human_attribute_name(:dst_node_id) %></th>
+        <th><%= model_class.human_attribute_name(:link_type) %></th>
+        <th><%= model_class.human_attribute_name(:width) %></th>
+        <th><%= model_class.human_attribute_name(:hill) %></th>
+        <th><%= model_class.human_attribute_name(:gap) %></th>
+        <th><%= model_class.human_attribute_name(:gap_latitude) %></th>
+        <th><%= model_class.human_attribute_name(:gap_longitude) %></th>
+        <th><%= model_class.human_attribute_name(:steps) %></th>
+        <th><%= model_class.human_attribute_name(:bus_stop) %></th>
+        <th><%= model_class.human_attribute_name(:bus_stop_latitude) %></th>
+        <th><%= model_class.human_attribute_name(:bus_stop_longitude) %></th>
+        <th><%= model_class.human_attribute_name(:blind_guide) %></th>
+        <th><%= model_class.human_attribute_name(:signals) %></th>
+        <th><%= model_class.human_attribute_name(:street_name) %></th>
+        <th><%= model_class.human_attribute_name(:length) %></th>
+        <th><%= model_class.human_attribute_name(:created_at) %></th>
+      </tr>
+    </thead>
+    <tbody>
+      <% @links.each do |link| %>
+        <tr>
+          <td>
+            <%= link_to t('.edit', :default => t("helpers.links.edit")),
+                        edit_link_path(link), :class => 'btn btn-default btn-xs' %>
+            <%= link_to t('.destroy', :default => t("helpers.links.destroy")),
+                        link_path(link),
+                        :method => :delete,
+                        :data => { :confirm => t('.confirm', :default => t("helpers.links.confirm", :default => 'Are you sure?')) },
+                        :class => 'btn btn-xs btn-danger' %>
+          </td>
+          <td><%= link_to link.id, link_path(link) %></td>
+          <td><%= link.link_id %></td>
+          <td><%= link.src_node_id %></td>
+          <td><%= link.dst_node_id %></td>
+          <td><%= link.link_type %></td>
+          <td><%= link.width %></td>
+          <td><%= link.hill %></td>
+          <td><%= link.gap %></td>
+          <td><%= link.gap_latitude %></td>
+          <td><%= link.gap_longitude %></td>
+          <td><%= link.steps %></td>
+          <td><%= link.bus_stop %></td>
+          <td><%= link.bus_stop_latitude %></td>
+          <td><%= link.bus_stop_longitude %></td>
+          <td><%= link.blind_guide %></td>
+          <td><%= link.signals %></td>
+          <td><%= link.street_name %></td>
+          <td><%= link.length %></td>
+          <td><%=l link.created_at %></td>
+        </tr>
+      <% end %>
+    </tbody>
+  </table>
+</div>
