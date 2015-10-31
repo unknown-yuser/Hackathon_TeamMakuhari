@@ -1,0 +1,122 @@
+- model_class = Link
+.page-header
+  h1
+    =t '.title', :default => model_class.model_name.human.titleize
+dl.dl-horizontal
+  dt
+    strong
+      = model_class.human_attribute_name(:id)
+      | :
+  dd
+    = @link.id
+  dt
+    strong
+      = model_class.human_attribute_name(:link_id)
+      | :
+  dd
+    = @link.link_id
+  dt
+    strong
+      = model_class.human_attribute_name(:src_node_id)
+      | :
+  dd
+    = @link.src_node_id
+  dt
+    strong
+      = model_class.human_attribute_name(:dst_node_id)
+      | :
+  dd
+    = @link.dst_node_id
+  dt
+    strong
+      = model_class.human_attribute_name(:link_type)
+      | :
+  dd
+    = @link.link_type
+  dt
+    strong
+      = model_class.human_attribute_name(:width)
+      | :
+  dd
+    = @link.width
+  dt
+    strong
+      = model_class.human_attribute_name(:hill)
+      | :
+  dd
+    = @link.hill
+  dt
+    strong
+      = model_class.human_attribute_name(:gap)
+      | :
+  dd
+    = @link.gap
+  dt
+    strong
+      = model_class.human_attribute_name(:gap_latitude)
+      | :
+  dd
+    = @link.gap_latitude
+  dt
+    strong
+      = model_class.human_attribute_name(:gap_longitude)
+      | :
+  dd
+    = @link.gap_longitude
+  dt
+    strong
+      = model_class.human_attribute_name(:steps)
+      | :
+  dd
+    = @link.steps
+  dt
+    strong
+      = model_class.human_attribute_name(:bus_stop)
+      | :
+  dd
+    = @link.bus_stop
+  dt
+    strong
+      = model_class.human_attribute_name(:bus_stop_latitude)
+      | :
+  dd
+    = @link.bus_stop_latitude
+  dt
+    strong
+      = model_class.human_attribute_name(:bus_stop_longitude)
+      | :
+  dd
+    = @link.bus_stop_longitude
+  dt
+    strong
+      = model_class.human_attribute_name(:blind_guide)
+      | :
+  dd
+    = @link.blind_guide
+  dt
+    strong
+      = model_class.human_attribute_name(:signals)
+      | :
+  dd
+    = @link.signals
+  dt
+    strong
+      = model_class.human_attribute_name(:street_name)
+      | :
+  dd
+    = @link.street_name
+  dt
+    strong
+      = model_class.human_attribute_name(:length)
+      | :
+  dd
+    = @link.length
+= link_to t('.back', :default => t("helpers.links.back")),
+-               links_path, :class => 'btn btn-default'
+= link_to t('.edit', :default => t("helpers.links.edit")),
+-               edit_link_path(@link), :class => 'btn btn-default'
+= link_to t('.destroy', :default => t("helpers.links.destroy")),
+-               link_path(@link),
+-               :method => 'delete',
+-               :data => { :confirm => t('.confirm', :default => t("helpers.links.confirm", :default => 'Are you sure?')) },
+-               :class => 'btn btn-danger'
