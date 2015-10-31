@@ -5,3 +5,13 @@
   To use Glyphicons sprites instead of Font Awesome, replace with "require twitter-bootstrap-static/sprites"
   =require twitter-bootstrap-static/fontawesome
   */
+
+.container {
+  width: auto;
+  max-width: 1600px;
+}
+
+.col-md-12 {
+  overflow: scroll;
+  max-height: 100vh;
+}

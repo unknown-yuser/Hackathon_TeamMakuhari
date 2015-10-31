@@ -11,16 +11,28 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20151031041159) do
-
-  create_table "homes", force: :cascade do |t|
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-  end
+ActiveRecord::Schema.define(version: 20151031072123) do
 
   create_table "links", force: :cascade do |t|
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
+    t.string   "link_id"
+    t.string   "src_node_id"
+    t.string   "dst_node_id"
+    t.integer  "link_type"
+    t.integer  "width"
+    t.float    "hill"
+    t.integer  "gap"
+    t.string   "gap_latitude"
+    t.string   "gap_longitude"
+    t.integer  "steps"
+    t.integer  "bus_stop"
+    t.string   "bus_stop_latitude"
+    t.string   "bus_stop_longitude"
+    t.integer  "blind_guide"
+    t.integer  "signals"
+    t.string   "street_name"
+    t.float    "length"
+    t.datetime "created_at",         null: false
+    t.datetime "updated_at",         null: false
   end
 
 end
