@@ -1,0 +1,100 @@
+= form_for @link, :html => { :class => "form-horizontal link" } do |f|
+  - if @link.errors.any?
+    #error_expl.panel.panel-danger
+      .panel-heading
+        h3.panel-title
+          = pluralize(@link.errors.count, "error")
+          |  prohibited this link from being saved:
+      .panel-body
+        ul
+          - @link.errors.full_messages.each do |msg|
+            li
+              = msg
+  .control-group
+    = f.label :id, :class => 'control-label'
+    .controls
+      = f.text_field :id, :class => 'form-control'
+    = error_span(@link[:id])
+  .control-group
+    = f.label :src_node_id, :class => 'control-label'
+    .controls
+      = f.text_field :src_node_id, :class => 'form-control'
+    = error_span(@link[:src_node_id])
+  .control-group
+    = f.label :dst_node_id, :class => 'control-label'
+    .controls
+      = f.text_field :dst_node_id, :class => 'form-control'
+    = error_span(@link[:dst_node_id])
+  .control-group
+    = f.label :link_type, :class => 'control-label'
+    .controls
+      = f.text_field :link_type, :class => 'form-control'
+    = error_span(@link[:link_type])
+  .control-group
+    = f.label :width, :class => 'control-label'
+    .controls
+      = f.text_field :width, :class => 'form-control'
+    = error_span(@link[:width])
+  .control-group
+    = f.label :hill, :class => 'control-label'
+    .controls
+      = f.text_field :hill, :class => 'form-control'
+    = error_span(@link[:hill])
+  .control-group
+    = f.label :gap, :class => 'control-label'
+    .controls
+      = f.text_field :gap, :class => 'form-control'
+    = error_span(@link[:gap])
+  .control-group
+    = f.label :gap_latitude, :class => 'control-label'
+    .controls
+      = f.text_field :gap_latitude, :class => 'form-control'
+    = error_span(@link[:gap_latitude])
+  .control-group
+    = f.label :gap_longitude, :class => 'control-label'
+    .controls
+      = f.text_field :gap_longitude, :class => 'form-control'
+    = error_span(@link[:gap_longitude])
+  .control-group
+    = f.label :steps, :class => 'control-label'
+    .controls
+      = f.text_field :steps, :class => 'form-control'
+    = error_span(@link[:steps])
+  .control-group
+    = f.label :bus_stop, :class => 'control-label'
+    .controls
+      = f.text_field :bus_stop, :class => 'form-control'
+    = error_span(@link[:bus_stop])
+  .control-group
+    = f.label :bus_stop_latitude, :class => 'control-label'
+    .controls
+      = f.text_field :bus_stop_latitude, :class => 'form-control'
+    = error_span(@link[:bus_stop_latitude])
+  .control-group
+    = f.label :bus_stop_longitude, :class => 'control-label'
+    .controls
+      = f.text_field :bus_stop_longitude, :class => 'form-control'
+    = error_span(@link[:bus_stop_longitude])
+  .control-group
+    = f.label :blind_guide, :class => 'control-label'
+    .controls
+      = f.text_field :blind_guide, :class => 'form-control'
+    = error_span(@link[:blind_guide])
+  .control-group
+    = f.label :signals, :class => 'control-label'
+    .controls
+      = f.text_field :signals, :class => 'form-control'
+    = error_span(@link[:signals])
+  .control-group
+    = f.label :street_name, :class => 'control-label'
+    .controls
+      = f.text_field :street_name, :class => 'form-control'
+    = error_span(@link[:street_name])
+  .control-group
+    = f.label :length, :class => 'control-label'
+    .controls
+      = f.text_field :length, :class => 'form-control'
+    = error_span(@link[:length])
+  = f.submit nil, :class => 'btn btn-primary'
+  = link_to t('.cancel', :default => t("helpers.links.cancel")),
+  -             links_path, :class => 'btn btn-default'
