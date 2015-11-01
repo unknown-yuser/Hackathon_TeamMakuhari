@@ -2,6 +2,9 @@ class Node < ActiveRecord::Base
   has_many :link_nodes, primary_key: :node_id, foreign_key: :node_id
   has_many :links, through: :link_nodes
 
+  reverse_geocoded_by :latitude, :longitude
+  after_validation :reverse_geocode
+
   def self.import(file)
     CSV.foreach(file.path, headers: true) do |row|
       node = find_by(node_id: row["node_id"]) || new
