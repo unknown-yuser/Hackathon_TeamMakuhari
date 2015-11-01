@@ -34,24 +34,47 @@ retrieveNodes = (fnc) ->
     success: callback
     error: (x, t, e) -> console.log e
 
+retrieveLinks = (fnc) ->
+  $.ajax
+    url:"http://localhost:3000/links.json"
+    type:'GET'
+    datatype: 'json'
+    success: fnc
+    error: (x, t, e) -> console.log e
+
 calculate_center = (nodes) ->
   sum_lat = 0
   sum_lng = 0
   count = 0
-  for nodeId in nodes
-    sum_x += nodes[nodeId].latitude
-    sum_y += nodes[nodeId].longitude
+  for nodeId of nodes
+    sum_lat += nodes[nodeId].latitude
+    sum_lng += nodes[nodeId].longitude
     count += 1
     console.log(nodes[nodeId])
-  # return { latitude: sum_lat/count, longitude: sum_lng/count }
-  return { latitude: 35, longitude: 139 }
+  console.log(sum_lat)
+  console.log(sum_lng)
+  console.log(count)
+  return { latitude: sum_lat/count, longitude: sum_lng/count }
+
+make_LatLng = (node) ->
+  new google.maps.LatLng(node.latitude, node.longitude)
 
 retrieveNodes (nodes) ->
-  console.log nodes
-  center_lat_lng = calculate_center(nodes)
-  center = new google.maps.LatLng(center_lat_lng.latitude, center_lat_lng.longitude)
-  map = new google.maps.Map(document.getElementById('map'),
-      zoom: 15,
-      center: center,
-      mapTypeId: google.maps.MapTypeId.ROADMAP
-    )
+  retrieveLinks (links) ->
+    console.log nodes
+    console.log links
+    center_lat_lng = calculate_center(nodes)
+    center = new google.maps.LatLng(center_lat_lng.latitude, center_lat_lng.longitude)
+    map = new google.maps.Map(document.getElementById('map'),
+        zoom: 16,
+        center: center,
+        mapTypeId: google.maps.MapTypeId.ROADMAP
+      )
+    links.map (link) ->
+      line = new google.maps.Polyline(
+        strokeWeight: 3,
+        strokeOpacity: 0.8,
+        strokeColor: 'green',
+        path: [make_LatLng(link.node[0]), make_LatLng(link.node[1])]
+      )
+      line.setMap(map)
