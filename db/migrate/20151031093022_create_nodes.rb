@@ -2,8 +2,8 @@ class CreateNodes < ActiveRecord::Migration
   def change
     create_table :nodes do |t|
       t.string :node_id
-      t.string :latitude
-      t.string :longitude
+      t.float :latitude
+      t.float :longitude
       t.string :link_1
       t.string :link_2
       t.string :link_3
