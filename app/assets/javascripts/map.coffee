@@ -1,3 +1,5 @@
+hostname = 'http://hokoo.herokuapp.com'
+
 innerProduct = (v0, v1) -> v0[0]*v1[0]+v0[1]*v1[1]
 dist = (v0, v1) -> Math.sqrt((v0[0]-v1[0])**2 + (v0[1]-v1[1]) **2)
 
@@ -22,22 +24,36 @@ getDistance = (node0, node1, pos) ->
   else
     Math.abs(innerProduct(v_normal, p1))
 
+nearest_link = (links, latLng) ->
+  pos = [latLng.lat(), latLng.lng()]
+  min_dist = Number.POSITIVE_INFINITY
+  n_link = links[0]
+  links.map (link) ->
+    nodes = link.node.map (node) ->
+      return [node.latitude, node.longitude]
+    t_dist = getDistance(nodes[0], nodes[1], pos)
+    if t_dist < min_dist
+      min_dist = t_dist
+      n_link = link
+  return n_link
+
+
 retrieveNodes = (fnc) ->
   callback = (response) ->
     jobj = {}; response.map (node) -> jobj[node.node_id] = node
     fnc jobj
 
   $.ajax
-    url:"http://localhost:3000/nodes.json"
-    type:'GET'
+    url: hostname + '/nodes.json'
+    type: 'GET'
     datatype: 'json'
     success: callback
     error: (x, t, e) -> console.log e
 
 retrieveLinks = (fnc) ->
   $.ajax
-    url:"http://localhost:3000/links.json"
-    type:'GET'
+    url: hostename + '/links.json'
+    type: 'GET'
     datatype: 'json'
     success: fnc
     error: (x, t, e) -> console.log e
@@ -59,6 +75,10 @@ calculate_center = (nodes) ->
 make_LatLng = (node) ->
   new google.maps.LatLng(node.latitude, node.longitude)
 
+click_handler = (links) -> (evt) ->
+    link = nearest_link(links, evt.latLng)
+    console.log link
+
 retrieveNodes (nodes) ->
   retrieveLinks (links) ->
     console.log nodes
@@ -78,3 +98,4 @@ retrieveNodes (nodes) ->
         path: [make_LatLng(link.node[0]), make_LatLng(link.node[1])]
       )
       line.setMap(map)
+    google.maps.event.addListener(map, 'click', click_handler(links))
