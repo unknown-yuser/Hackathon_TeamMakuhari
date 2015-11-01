@@ -12,6 +12,11 @@ class NodesController < ApplicationController
     @nodes = Node.includes(:links).all
   end
 
+  # GET /nodes/map
+  def map
+    render :map
+  end
+
   # GET /nodes/1
   # GET /nodes/1.json
   def show
