@@ -52,7 +52,7 @@ retrieveNodes = (fnc) ->
 
 retrieveLinks = (fnc) ->
   $.ajax
-    url: hostename + '/links.json'
+    url: hostname + '/links.json'
     type: 'GET'
     datatype: 'json'
     success: fnc
