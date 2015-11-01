@@ -1,5 +1,5 @@
 Rails.application.routes.draw do
-  root to: "links#index"
+  root to: "home#index"
   resources :links do
     collection { post :import }
   end

@@ -17,16 +17,12 @@ dl.dl-horizontal
     = @link.link_id
   dt
     strong
-      = model_class.human_attribute_name(:src_node_id)
+      = model_class.human_attribute_name(:node_id)
       | :
   dd
-    = @link.src_node_id
-  dt
-    strong
-      = model_class.human_attribute_name(:dst_node_id)
-      | :
-  dd
-    = @link.dst_node_id
+    - @link.node.each do |node|
+      = link_to node.node_id, node
+      br
   dt
     strong
       = model_class.human_attribute_name(:link_type)
