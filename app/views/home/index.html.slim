@@ -1,4 +1,11 @@
-h1
-  | Home#index
-p
-  | Find me in app/views/home/index.html.erb
+.row
+  .col-md-6
+    .jumbotron
+      .innertron
+        h1
+          | hokoo
+        p
+          | 歩行空間ネットワークデータ・プラットフォーム
+        p
+          => link_to "リンクデータ", links_path, class: "btn btn-primary"
+          = link_to "ノードデータ", nodes_path, class: "btn btn-primary"

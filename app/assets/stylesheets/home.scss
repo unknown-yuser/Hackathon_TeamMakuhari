@@ -1,3 +1,20 @@
 // Place all the styles related to the home controller here.
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
+
+body.home {
+  background: url("cover_map.jpg");
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-attachment: fixed;
+}
+
+.home .jumbotron {
+  opacity: 0.8;
+}
+
+.home .jumbotron h1,
+.home .jumbotron p {
+  color: #000000;
+  opacity: 1.0;
+}
