@@ -23,34 +23,12 @@ dl.dl-horizontal
     = @node.longitude
   dt
     strong
-      = model_class.human_attribute_name(:link_1)
+      = model_class.human_attribute_name(:link)
       | :
   dd
-    = @node.link_1
-  dt
-    strong
-      = model_class.human_attribute_name(:link_2)
-      | :
-  dd
-    = @node.link_2
-  dt
-    strong
-      = model_class.human_attribute_name(:link_3)
-      | :
-  dd
-    = @node.link_3
-  dt
-    strong
-      = model_class.human_attribute_name(:link_4)
-      | :
-  dd
-    = @node.link_4
-  dt
-    strong
-      = model_class.human_attribute_name(:link_5)
-      | :
-  dd
-    = @node.link_5
+    - @node.links.each do |link|
+      = link_to link.link_id, link
+      br
 = link_to t('.back', :default => t("helpers.links.back")),
                 nodes_path, :class => 'btn btn-default'
 = link_to t('.edit', :default => t("helpers.links.edit")),
