@@ -1,6 +1,13 @@
 class NodesController < ApplicationController
   before_action :set_node, only: [:show, :edit, :update, :destroy]
 
+  SEARCH_RADIUS_IN_KM = 0.100
+
+  def coord
+    @nodes = Node.includes(:links).near([coord_params[:lat], coord_params[:lng]], SEARCH_RADIUS_IN_KM, units: :km)
+    render :index
+  end
+
   def import
     Node.import(params[:file])
     redirect_to nodes_path, notice: "Import success!"
@@ -80,5 +87,9 @@ class NodesController < ApplicationController
     # Never trust parameters from the scary internet, only allow the white list through.
     def node_params
       params.require(:node).permit(:node_id, :latitude, :longitude)
+    end
+
+    def coord_params
+      params.permit(:lat, :lng)
     end
 end

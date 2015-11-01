@@ -1,10 +1,16 @@
 Rails.application.routes.draw do
   root to: "home#index"
   resources :links do
-    collection { post :import }
+    collection do
+      post :import
+      get  :coord
+    end
   end
   resources :nodes do
-    collection { post :import }
+    collection do
+      post :import
+      get  :coord
+    end
   end
   get 'map' => 'nodes#map'
 
