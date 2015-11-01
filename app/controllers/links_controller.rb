@@ -9,7 +9,7 @@ class LinksController < ApplicationController
   # GET /links
   # GET /links.json
   def index
-    @links = Link.all
+    @links = Link.includes(:node).all
   end
 
   # GET /links/1
@@ -69,7 +69,7 @@ class LinksController < ApplicationController
   private
     # Use callbacks to share common setup or constraints between actions.
     def set_link
-      @link = Link.find(params[:id])
+      @link = Link.includes(:node).find(params[:id])
     end
 
     # Never trust parameters from the scary internet, only allow the white list through.

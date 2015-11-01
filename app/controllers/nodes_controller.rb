@@ -9,7 +9,7 @@ class NodesController < ApplicationController
   # GET /nodes
   # GET /nodes.json
   def index
-    @nodes = Node.all
+    @nodes = Node.includes(:links).all
   end
 
   # GET /nodes/1
@@ -69,7 +69,7 @@ class NodesController < ApplicationController
   private
     # Use callbacks to share common setup or constraints between actions.
     def set_node
-      @node = Node.find(params[:id])
+      @node = Node.includes(:links).find(params[:id])
     end
 
     # Never trust parameters from the scary internet, only allow the white list through.
