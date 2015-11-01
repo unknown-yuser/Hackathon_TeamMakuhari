@@ -1,6 +1,17 @@
 class LinksController < ApplicationController
   before_action :set_link, only: [:show, :edit, :update, :destroy]
 
+  SEARCH_RADIUS_IN_KM = 0.100
+
+  def coord
+    nearby_nodes = Node.includes(:links).near([coord_params[:lat], coord_params[:lng]], SEARCH_RADIUS_IN_KM, units: :km)
+    @links ||= []
+    nearby_nodes.each do |node|
+      @links = @links | node.links
+    end
+    render :index
+  end
+
   def import
     Link.import(params[:file])
     redirect_to links_path, notice: "Import success!"
@@ -75,5 +86,9 @@ class LinksController < ApplicationController
     # Never trust parameters from the scary internet, only allow the white list through.
     def link_params
       params.require(:link).permit(:link_id, :src_node_id, :dst_node_id, :link_type, :width, :hill, :gap, :gap_latitude, :gap_longitude, :steps, :bus_stop, :bus_stop_latitude, :bus_stop_longitude, :blind_guide, :signals, :street_name, :length)
+    end
+
+    def coord_params
+      params.permit(:lat, :lng)
     end
 end
