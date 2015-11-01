@@ -5,6 +5,9 @@ Rails.application.routes.draw do
   end
   resources :nodes do
     collection { post :import }
+    member do
+      get 'map'
+    end
   end
 
   # The priority is based upon order of creation: first created -> highest priority.
