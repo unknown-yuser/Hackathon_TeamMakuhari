@@ -1,4 +1,4 @@
-hostname = 'http://hokoo.herokuapp.com'
+hostname = 'https://hokoo.herokuapp.com'
 
 innerProduct = (v0, v1) -> v0[0]*v1[0]+v0[1]*v1[1]
 dist = (v0, v1) -> Math.sqrt((v0[0]-v1[0])**2 + (v0[1]-v1[1]) **2)
