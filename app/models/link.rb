@@ -6,7 +6,16 @@ class Link < ActiveRecord::Base
     CSV.foreach(file.path, headers: true) do |row|
       link = find_by(link_id: row["link_id"]) || new
       names_to_use = attribute_names.select { |name| !name.in? ["id", "created_at", "updated_at"] }
-      attributes_to_use = names_to_use.map { |name| [name, row[name]] }.to_h
+      attributes_to_use = names_to_use.map do |name|
+        if name =~ /latitude|longitude/ && row[name]
+          lats_or_lngs = row[name].split(".", 3).map(&:to_f)
+          puts lats_or_lngs
+          floatized = lats_or_lngs[0] + (lats_or_lngs[1] / 60) + (lats_or_lngs[2] / 60 / 60)
+          [name, floatized]
+        else
+          [name, row[name]]
+        end
+      end.to_h
       puts attributes_to_use
       link.update_attributes(attributes_to_use)
       link.save!

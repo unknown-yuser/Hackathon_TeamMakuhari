@@ -8,12 +8,12 @@ class CreateLinks < ActiveRecord::Migration
       t.integer :width
       t.float :hill
       t.integer :gap
-      t.string :gap_latitude
-      t.string :gap_longitude
+      t.float :gap_latitude
+      t.float :gap_longitude
       t.integer :steps
       t.integer :bus_stop
-      t.string :bus_stop_latitude
-      t.string :bus_stop_longitude
+      t.float :bus_stop_latitude
+      t.float :bus_stop_longitude
       t.integer :blind_guide
       t.integer :signals
       t.string :street_name
