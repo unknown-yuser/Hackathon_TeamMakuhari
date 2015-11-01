@@ -11,7 +11,17 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20151031072123) do
+ActiveRecord::Schema.define(version: 20151031095348) do
+
+  create_table "link_nodes", force: :cascade do |t|
+    t.string   "link_id"
+    t.string   "node_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  add_index "link_nodes", ["link_id"], name: "index_link_nodes_on_link_id"
+  add_index "link_nodes", ["node_id"], name: "index_link_nodes_on_node_id"
 
   create_table "links", force: :cascade do |t|
     t.string   "link_id"
@@ -33,6 +43,19 @@ ActiveRecord::Schema.define(version: 20151031072123) do
     t.float    "length"
     t.datetime "created_at",         null: false
     t.datetime "updated_at",         null: false
+  end
+
+  create_table "nodes", force: :cascade do |t|
+    t.string   "node_id"
+    t.string   "latitude"
+    t.string   "longitude"
+    t.string   "link_1"
+    t.string   "link_2"
+    t.string   "link_3"
+    t.string   "link_4"
+    t.string   "link_5"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
   end
 
 end

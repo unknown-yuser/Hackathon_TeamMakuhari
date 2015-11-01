@@ -1,0 +1,11 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  node_id: MyString
+  latitude: MyString
+  longitude: MyString
+
+two:
+  node_id: MyString
+  latitude: MyString
+  longitude: MyString
