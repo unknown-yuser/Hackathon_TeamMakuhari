@@ -37,3 +37,4 @@ getDistance = (node0, node1, pos) ->
     dist([0,0], p2)
   else 
     Math.abs(innerProduct(v_normal, p1))
+
