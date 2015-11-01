@@ -9,3 +9,19 @@
         p
           => link_to "リンクデータ", links_path, class: "btn btn-primary"
           = link_to "ノードデータ", nodes_path, class: "btn btn-primary"
+.row
+  .col-md-7
+    .panel.panel-default
+      .panel-heading
+        | API Specs
+      .panel-body
+        ul
+          li Basic RESTful APIs with CRUD operation
+          li
+            | CSV import feature: 
+            => link_to "Links", links_path
+            = link_to "Nodes", nodes_path
+          li
+            | Coordinate queries:
+            pre GET /links/coord(.json)?lat=[Latitude in float]&lng=[longitude in float]
+            pre GET /nodes/coord(.json)?lat=[Latitude in float]&lng=[longitude in float]
