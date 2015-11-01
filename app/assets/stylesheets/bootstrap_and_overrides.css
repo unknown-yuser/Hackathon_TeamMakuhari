@@ -11,7 +11,7 @@
   max-width: 1600px;
 }
 
-.col-md-12 {
+.long-table {
   overflow: scroll;
-  max-height: 100vh;
+  max-height: 70vh;
 }

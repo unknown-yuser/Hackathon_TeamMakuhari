@@ -11,40 +11,42 @@
     = form_tag import_nodes_path, multipart: true do
       = file_field_tag :file
       = submit_tag "Import", class: "btn btn-info"
-table.table.table-striped
-  thead
-    tr
-      th
-        = model_class.human_attribute_name(:node_id)
-      th
-        = model_class.human_attribute_name(:latitude)
-      th
-        = model_class.human_attribute_name(:longitude)
-      th
-        = model_class.human_attribute_name(:link)
-      th
-        = model_class.human_attribute_name(:created_at)
-      th
-        =t '.actions', :default => t("helpers.actions")
-  tbody
-    - @nodes.each do |node|
-      tr
-        td
-          = link_to node.node_id, node
-        td
-          = node.latitude
-        td
-          = node.longitude
-        td
-          - node.links.each do |link|
-            = link_to link.link_id, link
-        td
-          =l node.created_at
-        td
-          = link_to t('.edit', :default => t("helpers.links.edit")),
-                                  edit_node_path(node), :class => 'btn btn-default btn-xs'
-          = link_to t('.destroy', :default => t("helpers.links.destroy")),
-                                  node_path(node),
-                                  :method => :delete,
-                                  :data => { :confirm => t('.confirm', :default => t("helpers.links.confirm", :default => 'Are you sure?')) },
-                                  :class => 'btn btn-xs btn-danger'
+.row
+  .col-md-12.long-table
+    table.table.table-striped
+      thead
+        tr
+          th
+            =t '.actions', :default => t("helpers.actions")
+          th
+            = model_class.human_attribute_name(:node_id)
+          th
+            = model_class.human_attribute_name(:latitude)
+          th
+            = model_class.human_attribute_name(:longitude)
+          th
+            = model_class.human_attribute_name(:link)
+          th
+            = model_class.human_attribute_name(:created_at)
+      tbody
+        - @nodes.each do |node|
+          tr
+            td
+              = link_to t('.edit', :default => t("helpers.links.edit")),
+                                      edit_node_path(node), :class => 'btn btn-default btn-xs'
+              = link_to t('.destroy', :default => t("helpers.links.destroy")),
+                                      node_path(node),
+                                      :method => :delete,
+                                      :data => { :confirm => t('.confirm', :default => t("helpers.links.confirm", :default => 'Are you sure?')) },
+                                      :class => 'btn btn-xs btn-danger'
+            td
+              = link_to node.node_id, node
+            td
+              = node.latitude
+            td
+              = node.longitude
+            td
+              - node.links.each do |link|
+                = link_to link.link_id, link
+            td
+              =l node.created_at
